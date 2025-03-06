@@ -90,7 +90,9 @@ export const IBM_VLLM_ROOT_CERT = getEnv('IBM_VLLM_ROOT_CERT', null);
 export const IBM_VLLM_CERT_CHAIN = getEnv('IBM_VLLM_CERT_CHAIN', null);
 export const IBM_VLLM_PRIVATE_KEY = getEnv('IBM_VLLM_PRIVATE_KEY', null);
 
+export const OPENAI_URL = getEnv('OPENAI_URL', 'https://api.openai.com/v1');
 export const OPENAI_API_KEY = getEnv('OPENAI_API_KEY', null);
+export const OPENAI_MODEL = getEnv('OPENAI_MODEL', 'gpt-4o');
 
 export const WATSONX_API_KEY = getEnv('WATSONX_API_KEY', null);
 export const WATSONX_PROJECT_ID = getEnv('WATSONX_PROJECT_ID', null);

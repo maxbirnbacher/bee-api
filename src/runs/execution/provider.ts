@@ -25,7 +25,9 @@ import {
   IBM_VLLM_ROOT_CERT,
   IBM_VLLM_URL,
   OLLAMA_URL,
+  OPENAI_URL,
   OPENAI_API_KEY,
+  OPENAI_MODEL,
   WATSONX_API_KEY,
   WATSONX_PROJECT_ID,
   WATSONX_REGION
@@ -83,10 +85,13 @@ export class OllamaAIProvider implements AIProvider<OllamaChatLLM, OllamaLLM> {
 export class OpenAIProvider implements AIProvider<OpenAIChatLLM> {
   static client: OpenAI;
   constructor() {
-    OpenAIProvider.client ??= new OpenAI({ apiKey: OPENAI_API_KEY ?? undefined });
+    OpenAIProvider.client ??= new OpenAI({
+      apiKey: OPENAI_API_KEY ?? undefined,
+      baseURL: OPENAI_URL // Uses custom URL if provided, fallback is
+    });
   }
 
-  createChatBackend({ model = 'gpt-4o', ...params }: ChatLLMParams = {}) {
+  createChatBackend({ model = OPENAI_MODEL, ...params }: ChatLLMParams = {}) {
     return new OpenAIChatLLM({
       client: OpenAIProvider.client,
       modelId: model as OpenAI.ChatModel,
